@@ -70,7 +70,13 @@ function App() {
 
       <section className="about-us dark-section" id="about-us">
         <div className="vinyl" aria-hidden="true"><span>PEOPLE<br />+ STORIES<br />KEEP<br />HIM HERE</span></div>
-        <div><p className="section-label">About Us</p><h2>More Than<br />a Memory</h2><p>They Lived exists to honor his life, his passions, and the impact he made on the people around him. We’re a community of family, friends, and kindred spirits keeping his story alive through real conversations, shared memories, and creative expression.</p><p>This is a space to celebrate what he loved—and what he stood for—so his influence continues to move forward.</p></div>
+        <div>
+          <p className="section-label">About Us</p>
+          <h2>More Than<br />a Memory</h2>
+          <p>This website and podcast were born out of profound love for my son, Ja’Monte Lee Adams.</p>
+          <p>Ja’Monte lived with thalassemia, facing every challenge with quiet strength, resilience, and an unforgettable spirit. On May 19, 2018, at the age of 24, Ja’Monte passed away, changing my world forever. The loss of a child is an unimaginable path—one filled with complex grief, unspoken sorrow, and a love that never ends.</p>
+          <p>I created this platform to ensure Ja’Monte’s legacy lives on and to create a compassionate sanctuary for parents walking this same road. Through honest conversations about child loss, memory, and healing, this podcast is dedicated to grieving parents everywhere. Here, we remember together, honor our children’s lives, and remind one another that no parent has to carry this journey alone.</p>
+        </div>
         <div className="quote-panel">GOOD PEOPLE<br />MOVE<br />DIFFERENTLY.</div>
       </section>
 
