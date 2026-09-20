@@ -2,6 +2,9 @@
 
 html,body{overflow-x:hidden}
 
+:root{--red:#e51b23}
+.hero h1 em,.episode-art em,footer strong em{color:var(--red)!important;font-style:normal}
+
 .logo-slot{width:168px!important;height:68px!important;background:transparent!important;overflow:visible}
 .logo-slot img{display:block;width:100%;height:92px;object-fit:contain;filter:drop-shadow(0 3px 8px rgba(0,0,0,.5))}
 

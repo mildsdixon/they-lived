@@ -11,7 +11,7 @@ const nav = [
 function Header() {
   const [open, setOpen] = useState(false);
   return <header className="site-header">
-    <a className="logo-slot" href="#top" aria-label="They Live home"><img src="/assets/they-live-logo.png" alt="They Lived — chess, music, and love" /></a>
+    <a className="logo-slot" href="#top" aria-label="They Lived home"><img src="/assets/they-live-logo.png" alt="They Lived — chess, music, and love" /></a>
     <button className="menu-button" onClick={() => setOpen(!open)} aria-label="Toggle menu">{open ? <X /> : <Menu />}</button>
     <nav className={open ? 'open' : ''} aria-label="Main navigation">
       {nav.map(([label, href]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>)}
@@ -45,7 +45,7 @@ function PodcastPlayer() {
   useEffect(() => { if (!playing) return; const id = setInterval(() => setProgress(p => p >= 100 ? 0 : p + .25), 250); return () => clearInterval(id); }, [playing]);
   const mins = Math.floor((progress / 100) * 45); const secs = Math.floor(((progress / 100) * 45 - mins) * 60);
   return <div className="player">
-    <div className="episode-art"><span>THEY<br />LIVE</span><b>♟</b><small>PODCAST</small></div>
+    <div className="episode-art"><span>THEY<br /><em>LIVED</em></span><b>♟</b><small>PODCAST</small></div>
     <div className="player-body"><p>Featured Episode</p><h3>More Than a Game</h3><span>A conversation about life, strategy, and lasting impact.</span>
       <div className="controls"><button onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Play'}>{playing ? <Pause fill="currentColor" /> : <Play fill="currentColor" />}</button><time>{String(mins).padStart(2,'0')}:{String(secs).padStart(2,'0')}</time><input aria-label="Episode progress" type="range" min="0" max="100" value={progress} onChange={e => setProgress(+e.target.value)} /><time>45:00</time><Volume2 size={18} /></div>
     </div>
@@ -58,7 +58,7 @@ function App() {
     <Header />
     <main id="top">
       <section className="hero">
-        <div className="hero-content"><h1>THEY <em>LIVE</em></h1><p className="hero-line">His moves. His music. His memory.</p><p className="hero-copy">A life that made room for bigger conversations.<br />On the board. In the beat. In all of us.</p><div className="actions"><a className="button gold" href="#about-him">Discover His Story <ArrowRight size={17} /></a><button className="button outline" onClick={() => setStoryOpen(true)}>Share Your Story</button></div></div>
+        <div className="hero-content"><h1>THEY <em>LIVED</em></h1><p className="hero-line">His moves. His music. His memory.</p><p className="hero-copy">A life that made room for bigger conversations.<br />On the board. In the beat. In all of us.</p><div className="actions"><a className="button gold" href="#about-him">Discover His Story <ArrowRight size={17} /></a><button className="button outline" onClick={() => setStoryOpen(true)}>Share Your Story</button></div></div>
         <a className="scroll-cue" href="#about-him">Keep going <ChevronDown /></a>
       </section>
 
@@ -70,7 +70,7 @@ function App() {
 
       <section className="about-us dark-section" id="about-us">
         <div className="vinyl" aria-hidden="true"><span>PEOPLE<br />+ STORIES<br />KEEP<br />HIM HERE</span></div>
-        <div><p className="section-label">About Us</p><h2>More Than<br />a Memory</h2><p>They Live exists to honor his life, his passions, and the impact he made on the people around him. We’re a community of family, friends, and kindred spirits keeping his story alive through real conversations, shared memories, and creative expression.</p><p>This is a space to celebrate what he loved—and what he stood for—so his influence continues to move forward.</p></div>
+        <div><p className="section-label">About Us</p><h2>More Than<br />a Memory</h2><p>They Lived exists to honor his life, his passions, and the impact he made on the people around him. We’re a community of family, friends, and kindred spirits keeping his story alive through real conversations, shared memories, and creative expression.</p><p>This is a space to celebrate what he loved—and what he stood for—so his influence continues to move forward.</p></div>
         <div className="quote-panel">GOOD PEOPLE<br />MOVE<br />DIFFERENTLY.</div>
       </section>
 
@@ -89,7 +89,7 @@ function App() {
         {contactSent ? <div className="contact-success"><span>Message received.</span><p>Thank you for reaching out. We’ll be in touch.</p></div> : <form onSubmit={e => { e.preventDefault(); setContactSent(true); }}><div className="form-row"><input required aria-label="Your name" placeholder="Your Name" /><input required type="email" aria-label="Your email" placeholder="Your Email" /></div><textarea required aria-label="Your message" placeholder="Your Message" rows="4" /><button className="button burgundy">Send Message <ArrowRight size={17} /></button></form>}
       </section>
     </main>
-    <footer><strong>THEY LIVE</strong><span>His moves. His music. His memory.</span><span>Good people keep good stories alive.</span><small>© 2026 They Live. All rights reserved.</small></footer>
+    <footer><strong>THEY <em>LIVED</em></strong><span>His moves. His music. His memory.</span><span>Good people keep good stories alive.</span><small>© 2026 They Lived. All rights reserved.</small></footer>
     {storyOpen && <StoryModal onClose={() => setStoryOpen(false)} />}
   </>;
 }
