@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowRight, ChevronDown, Menu, Pause, Play, Send, Volume2, X } from 'lucide-react';
+import { ArrowRight, ChevronDown, ImagePlus, Menu, Pause, Play, Send, Trash2, Volume2, X } from 'lucide-react';
 import './styles.css';
 
 const nav = [
   ['About Him', '#about-him'], ['About Us', '#about-us'], ['Tell Your Story', '#story'],
-  ['Podcast', '#podcast'], ['Contact Us', '#contact']
+  ['Gallery', '#gallery'], ['Podcast', '#podcast'], ['Contact Us', '#contact']
 ];
 
 function Header() {
@@ -52,6 +52,39 @@ function PodcastPlayer() {
   </div>
 }
 
+function Gallery() {
+  const [photos, setPhotos] = useState([]);
+  const inputRef = useRef(null);
+
+  const addPhotos = event => {
+    const files = [...event.target.files].filter(file => file.type.startsWith('image/')).slice(0, 12 - photos.length);
+    files.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = () => setPhotos(current => [...current, { id: `${file.name}-${file.lastModified}-${reader.result.length}`, src: reader.result, alt: file.name.replace(/\.[^.]+$/, '') }].slice(0, 12));
+      reader.readAsDataURL(file);
+    });
+    event.target.value = '';
+  };
+
+  return <section className="gallery-section" id="gallery">
+    <div className="gallery-heading">
+      <div><p className="section-label">Gallery</p><h2>Pieces of<br />His Story</h2></div>
+      <div><p>Add the moments you want to keep close. Each photograph will settle onto the page like a memory taped into a well-loved notebook.</p><button className="button burgundy" type="button" onClick={() => inputRef.current?.click()}><ImagePlus size={18} /> Add Photos</button><input ref={inputRef} className="gallery-input" type="file" accept="image/*" multiple onChange={addPhotos} /></div>
+    </div>
+    <div className={`photo-collage ${photos.length ? 'has-photos' : ''}`} aria-live="polite">
+      {photos.length ? photos.map((photo, index) => <figure className={`taped-photo photo-${index % 6}`} key={photo.id}>
+        <span className="tape" aria-hidden="true"></span>
+        <img src={photo.src} alt={photo.alt} />
+        <button type="button" onClick={() => setPhotos(current => current.filter(item => item.id !== photo.id))} aria-label={`Remove ${photo.alt}`}><Trash2 size={16} /></button>
+      </figure>) : <>
+        <div className="empty-photo empty-one"><span className="tape"></span><p>A favorite smile</p></div>
+        <div className="empty-photo empty-two"><span className="tape"></span><p>A moment together</p></div>
+        <div className="empty-photo empty-three"><span className="tape"></span><p>A memory worth keeping</p></div>
+      </>}
+    </div>
+  </section>;
+}
+
 function App() {
   const [storyOpen, setStoryOpen] = useState(false); const [contactSent, setContactSent] = useState(false);
   return <>
@@ -91,6 +124,8 @@ function App() {
         <div><p className="section-label">Tell Your Story</p><h2>Your Words<br />Keep Him Alive</h2><p>A memory. A lesson. A moment. A song. However he touched your life, we’d love to hear your story. Your voice helps keep his spirit, values, and impact alive for generations to come.</p><button className="button burgundy" onClick={() => setStoryOpen(true)}>Share Your Story <ArrowRight size={17} /></button></div>
         <button className="notebook" onClick={() => setStoryOpen(true)}><span>Good stories<br />live longer.</span><small>Open the page <ArrowRight size={14} /></small></button>
       </section>
+
+      <Gallery />
 
       <section className="podcast dark-section" id="podcast">
         <div className="podcast-intro"><p className="section-label">Podcast</p><h2>Conversations<br />That Keep Him Close</h2><p>Real stories. Deeper ideas. Fine culture he loved. Our podcast features conversations with family, friends, and voices from the worlds of hip-hop, chess, and beyond—exploring his impact and the ideas that still move us today.</p></div>
