@@ -8,6 +8,11 @@ const nav = [
   ['Gallery', '/gallery'], ['Audio Podcast', '/#podcast'], ['Contact Us', '/#contact']
 ];
 
+const galleryPhotos = Array.from({ length: 18 }, (_, index) => ({
+  src: `/assets/gallery/monte-${String(index + 1).padStart(2, '0')}.jpg`,
+  alt: `A treasured memory of Monte and his loved ones — photo ${index + 1}`
+}));
+
 function Header() {
   const [open, setOpen] = useState(false);
   return <header className="site-header">
@@ -58,10 +63,11 @@ function Gallery() {
       <div><p className="section-label">Gallery</p><h2>Pieces of<br />His Story</h2></div>
       <div><p>The moments we keep close—each photograph held here like a memory taped into a well-loved notebook.</p></div>
     </div>
-    <div className="photo-collage" aria-live="polite">
-      <div className="empty-photo empty-one"><span className="tape"></span><p>A favorite smile</p></div>
-      <div className="empty-photo empty-two"><span className="tape"></span><p>A moment together</p></div>
-      <div className="empty-photo empty-three"><span className="tape"></span><p>A memory worth keeping</p></div>
+    <div className="photo-collage has-photos">
+      {galleryPhotos.map((photo, index) => <figure className={`taped-photo photo-${index % 6}`} key={photo.src}>
+        <span className="tape" aria-hidden="true"></span>
+        <img src={photo.src} alt={photo.alt} loading={index < 3 ? 'eager' : 'lazy'} />
+      </figure>)}
     </div>
   </section>;
 }
