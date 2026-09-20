@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ArrowRight, ChevronDown, Menu, Pause, Play, Send, Volume2, X } from 'lucide-react';
+import { FaFacebookF, FaInstagram, FaThreads, FaTiktok, FaXTwitter, FaYoutube } from 'react-icons/fa6';
 import './styles.css';
 
 const nav = [
@@ -12,6 +13,15 @@ const galleryPhotos = Array.from({ length: 18 }, (_, index) => ({
   src: `/assets/gallery/monte-${String(index + 1).padStart(2, '0')}.jpg`,
   alt: `A treasured memory of Monte and his loved ones — photo ${index + 1}`
 }));
+
+const socialLinks = [
+  { name: 'Facebook', url: '', Icon: FaFacebookF },
+  { name: 'Instagram', url: '', Icon: FaInstagram },
+  { name: 'YouTube', url: '', Icon: FaYoutube },
+  { name: 'TikTok', url: '', Icon: FaTiktok },
+  { name: 'X', url: '', Icon: FaXTwitter },
+  { name: 'Threads', url: '', Icon: FaThreads }
+];
 
 function Header() {
   const [open, setOpen] = useState(false);
@@ -127,7 +137,17 @@ function App() {
         {contactSent ? <div className="contact-success"><span>Message received.</span><p>Thank you for reaching out. We’ll be in touch.</p></div> : <form onSubmit={e => { e.preventDefault(); setContactSent(true); }}><div className="form-row"><input required aria-label="Your name" placeholder="Your Name" /><input required type="email" aria-label="Your email" placeholder="Your Email" /></div><textarea required aria-label="Your message" placeholder="Your Message" rows="4" /><button className="button burgundy">Send Message <ArrowRight size={17} /></button></form>}
       </section>
     </main>}
-    <footer><strong>THEY <em>LIVED</em></strong><span>His moves. His music. His memory.</span><span>Good people keep good stories alive.</span><small>© 2026 They Lived. All rights reserved.</small></footer>
+    <footer>
+      <strong>THEY <em>LIVED</em></strong>
+      <span>His moves. His music. His memory.</span>
+      <nav className="social-links" aria-label="Social media">
+        {socialLinks.map(({ name, url, Icon }) => url
+          ? <a key={name} href={url} target="_blank" rel="noreferrer" aria-label={name}><Icon /></a>
+          : <span key={name} className="social-icon pending" role="img" aria-label={`${name} link coming soon`} title={`${name} link ready to connect`}><Icon /></span>)}
+      </nav>
+      <span>Good people keep good stories alive.</span>
+      <small>© 2026 They Lived. All rights reserved.</small>
+    </footer>
     {storyOpen && <StoryModal onClose={() => setStoryOpen(false)} />}
   </>;
 }
