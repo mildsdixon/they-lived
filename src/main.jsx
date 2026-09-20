@@ -64,7 +64,14 @@ function App() {
 
       <section className="about-him light-section" id="about-him">
         <div className="visual-collage" aria-hidden="true"><div className="record"><i>♟</i></div><div className="board"></div><p>STRATEGY<br />IN LIFE<br />AND LYRICS</p></div>
-        <div className="section-copy"><p className="section-label">About Him</p><h2>A Life Played<br />With Purpose</h2><p>He saw connections where others saw opposites—chess and hip-hop, strategy and self-expression, discipline and freedom. He moved through the world with curiosity, heart, and a belief that both the board and the beat could make life better.</p><p>He wasn’t just a fan of the culture—he lived it. Every verse, every move, every conversation was a chance to think deeper and uplift others.</p></div>
+        <div className="section-copy">
+          <p className="section-label">About Him</p>
+          <h2>A Life Played<br />With Purpose</h2>
+          <p>He saw connections where others saw opposites—chess and hip-hop, strategy and self-expression, discipline and freedom. He moved through the world with curiosity, heart, and a belief that both the board and the beat could make life better.</p>
+          <p>He wasn’t just a fan of the culture—he lived it. Every verse, every move, every conversation was a chance to think deeper and uplift others.</p>
+          <p>Monte’s life reminds us that even when someone is living with a serious condition like thalassemia, their diagnosis does not define the meaning of their life. Learning about this disease in Monte’s memory teaches us the importance of awareness, compassion, early testing, blood donation, and continued support for those living with inherited blood disorders.</p>
+          <p>Monte’s legacy calls us to turn grief into purpose—to learn, to share, and to help others. By speaking his name and raising awareness, we honor not only how he died, but more importantly, how he lived: <strong>a life played with purpose.</strong></p>
+        </div>
         <blockquote>“Different pieces.<br />Same bigger picture.”</blockquote>
       </section>
 
