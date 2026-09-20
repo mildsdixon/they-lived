@@ -87,6 +87,10 @@ function Gallery() {
 
 function App() {
   const [storyOpen, setStoryOpen] = useState(false); const [contactSent, setContactSent] = useState(false);
+  useEffect(() => {
+    if (!window.location.hash) return;
+    requestAnimationFrame(() => document.querySelector(window.location.hash)?.scrollIntoView());
+  }, []);
   return <>
     <Header />
     <main id="top">
