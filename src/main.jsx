@@ -5,7 +5,7 @@ import './styles.css';
 
 const nav = [
   ['About Him', '/#about-him'], ['About Us', '/#about-us'], ['Tell Your Story', '/#story'],
-  ['Gallery', '/gallery'], ['Podcast', '/#podcast'], ['Contact Us', '/#contact']
+  ['Gallery', '/gallery'], ['Audio Podcast', '/#podcast'], ['Contact Us', '/#contact']
 ];
 
 function Header() {
@@ -45,7 +45,7 @@ function PodcastPlayer() {
   useEffect(() => { if (!playing) return; const id = setInterval(() => setProgress(p => p >= 100 ? 0 : p + .25), 250); return () => clearInterval(id); }, [playing]);
   const mins = Math.floor((progress / 100) * 45); const secs = Math.floor(((progress / 100) * 45 - mins) * 60);
   return <div className="player">
-    <div className="episode-art"><span>THEY<br /><em>LIVED</em></span><b>♟</b><small>PODCAST</small></div>
+    <div className="episode-art"><span>THEY<br /><em>LIVED</em></span><b>♟</b><small>AUDIO PODCAST</small></div>
     <div className="player-body"><p>Featured Episode</p><h3>More Than a Game</h3><span>A conversation about life, strategy, and lasting impact.</span>
       <div className="controls"><button onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Play'}>{playing ? <Pause fill="currentColor" /> : <Play fill="currentColor" />}</button><time>{String(mins).padStart(2,'0')}:{String(secs).padStart(2,'0')}</time><input aria-label="Episode progress" type="range" min="0" max="100" value={progress} onChange={e => setProgress(+e.target.value)} /><time>45:00</time><Volume2 size={18} /></div>
     </div>
@@ -112,7 +112,7 @@ function App() {
       </section>
 
       <section className="podcast dark-section" id="podcast">
-        <div className="podcast-intro"><p className="section-label">Podcast</p><h2>Conversations<br />That Keep Him Close</h2><p>Real stories. Deeper ideas. Fine culture he loved. Our podcast features conversations with family, friends, and voices from the worlds of hip-hop, chess, and beyond—exploring his impact and the ideas that still move us today.</p></div>
+        <div className="podcast-intro"><p className="section-label">Audio Podcast</p><h2>Conversations<br />That Keep Him Close</h2><p>Real stories. Deeper ideas. Fine culture he loved. Our audio podcast features conversations with family, friends, and voices from the worlds of hip-hop, chess, and beyond—exploring his impact and the ideas that still move us today.</p></div>
         <PodcastPlayer />
       </section>
 
