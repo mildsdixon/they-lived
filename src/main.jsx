@@ -6,7 +6,7 @@ import './styles.css';
 
 const nav = [
   ['About Him', '/#about-him'], ['About Us', '/#about-us'], ['Tell Your Story', '/#story'],
-  ['Gallery', '/gallery'], ['Audio Podcast', '/#podcast'], ['Contact Us', '/#contact']
+  ['Gallery', '/gallery'], ['Video', '/video'], ['Audio Podcast', '/#podcast'], ['Contact Us', '/#contact']
 ];
 
 const galleryPhotos = Array.from({ length: 18 }, (_, index) => ({
@@ -17,7 +17,7 @@ const galleryPhotos = Array.from({ length: 18 }, (_, index) => ({
 const socialLinks = [
   { name: 'Facebook', url: '', Icon: FaFacebookF },
   { name: 'Instagram', url: '', Icon: FaInstagram },
-  { name: 'YouTube', url: '', Icon: FaYoutube },
+  { name: 'YouTube', url: 'https://www.youtube.com/@Theylived94', Icon: FaYoutube },
   { name: 'TikTok', url: '', Icon: FaTiktok },
   { name: 'X', url: '', Icon: FaXTwitter },
   { name: 'Threads', url: '', Icon: FaThreads }
@@ -82,16 +82,37 @@ function Gallery() {
   </section>;
 }
 
+function VideoPage() {
+  return <section className="video-page">
+    <div className="video-page-copy">
+      <p className="section-label">Video</p>
+      <h1>Stories That<br />Keep Him Close</h1>
+      <p>Watch They Lived on YouTube for conversations, memories, and moments created to honor Ja’Monte’s life and legacy.</p>
+      <a className="button youtube-button" href="https://www.youtube.com/@Theylived94" target="_blank" rel="noreferrer">
+        <FaYoutube aria-hidden="true" /> Visit They Lived on YouTube <ArrowRight size={17} />
+      </a>
+    </div>
+    <a className="video-channel-card" href="https://www.youtube.com/@Theylived94" target="_blank" rel="noreferrer" aria-label="Open the They Lived YouTube channel">
+      <span className="video-play"><FaYoutube aria-hidden="true" /></span>
+      <strong>THEY <em>LIVED</em></strong>
+      <small>@Theylived94</small>
+      <span>Watch on YouTube <ArrowRight size={16} /></span>
+    </a>
+  </section>;
+}
+
 function App() {
   const [storyOpen, setStoryOpen] = useState(false); const [contactSent, setContactSent] = useState(false);
-  const isGalleryPage = window.location.pathname.replace(/\/$/, '') === '/gallery';
+  const pathname = window.location.pathname.replace(/\/$/, '');
+  const isGalleryPage = pathname === '/gallery';
+  const isVideoPage = pathname === '/video';
   useEffect(() => {
     if (!window.location.hash) return;
     requestAnimationFrame(() => document.querySelector(window.location.hash)?.scrollIntoView());
   }, []);
   return <>
     <Header />
-    {isGalleryPage ? <main id="top"><Gallery /></main> : <main id="top">
+    {isGalleryPage ? <main id="top"><Gallery /></main> : isVideoPage ? <main id="top"><VideoPage /></main> : <main id="top">
       <section className="hero">
         <div className="hero-content"><h1>THEY <em>LIVED</em></h1><p className="hero-line">His moves. His music. His memory.</p><p className="hero-copy">A life that made room for bigger conversations.<br />On the board. In the beat. In all of us.</p><div className="actions"><a className="button gold" href="#about-him">Discover His Story <ArrowRight size={17} /></a><button className="button outline" onClick={() => setStoryOpen(true)}>Share Your Story</button></div></div>
         <a className="scroll-cue" href="#about-him">Keep going <ChevronDown /></a>
